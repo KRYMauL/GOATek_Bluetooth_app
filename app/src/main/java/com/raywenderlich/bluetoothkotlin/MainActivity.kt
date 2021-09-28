@@ -3,11 +3,9 @@ package com.raywenderlich.bluetoothkotlin
 import android.app.Activity
 import android.bluetooth.BluetoothAdapter
 import android.content.Intent
-import android.media.Image
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.*
-import org.w3c.dom.Text
 
 class MainActivity : AppCompatActivity() {
 
