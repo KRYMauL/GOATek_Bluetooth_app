@@ -18,14 +18,14 @@
     <!--ImageView: Bluetooth icon (on/off)-->
     <ImageView
         android:id="@+id/bluetoothStatusIv"
-        android:layout_width="10sp"
-        android:layout_height="10sp"
+        android:layout_width="40sp"
+        android:layout_height="40sp"
         android:src="@drawable/ic_bluetooth_off" />
     <!--Button: Turn Bluetooth on-->
     <Button
         android:id="@+id/turnOnBtn"
         style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="wrap_content"
+        android:layout_width="165dp"
         android:layout_height="wrap_content"
         android:minWidth="20dp"
         android:text="@string/turn_on" />
@@ -33,7 +33,7 @@
     <Button
         android:id="@+id/turnOffBtn"
         style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="wrap_content"
+        android:layout_width="165dp"
         android:layout_height="wrap_content"
         android:minWidth="20dp"
         android:text="@string/turn_off" />
@@ -41,7 +41,7 @@
     <Button
         android:id="@+id/discoverableBtn"
         style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="wrap_content"
+        android:layout_width="165dp"
         android:layout_height="wrap_content"
         android:minWidth="20dp"
         android:text="@string/discoverable" />

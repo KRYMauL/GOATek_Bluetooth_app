@@ -2,7 +2,9 @@ package com.raywenderlich.bluetoothkotlin
 
 import android.app.Activity
 import android.bluetooth.BluetoothAdapter
+import android.bluetooth.BluetoothAdapter.getDefaultAdapter
 import android.content.Intent
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.*
@@ -20,15 +22,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         //init bluetooth adapter
-        bAdapter = BluetoothAdapter.getDefaultAdapter()
+        bAdapter = getDefaultAdapter()
         //check if bluetooth is on/off
-        if (bAdapter == null){
-            "Bluetooth is not available".also{
-                findViewById<TextView>(R.id.bluetoothStatusTv).text = it }
-        } else{
-            "Bluetooth is available".also{
-                findViewById<TextView>(R.id.bluetoothStatusTv).text = it }
-        }
+        "Bluetooth is available".also{
+            findViewById<TextView>(R.id.bluetoothStatusTv).text = it }
         //set image according to bluetooth status (on/off)
         if (bAdapter.isEnabled){
             //bluetooth is on
@@ -53,7 +50,12 @@ class MainActivity : AppCompatActivity() {
 
         //turn off bluetooth
         findViewById<Button>(R.id.turnOffBtn).setOnClickListener{
-            if (!bAdapter.isEnabled){
+            if (if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ECLAIR) {
+                    !bAdapter.isEnabled
+                } else {
+                    TODO("VERSION.SDK_INT < ECLAIR")
+                }
+            ){
                 //already disabled
                 Toast.makeText(this, "Already off", Toast.LENGTH_LONG).show()
             } else{
@@ -90,6 +92,13 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this, "Turn on Bluetooth first",
                     Toast.LENGTH_LONG).show()
             }
+        }
+
+        // Ensures Bluetooth is available on the device and it is enabled. If not,
+        // displays a dialog requesting user permission to enable Bluetooth.
+        if (!bAdapter.isEnabled) {
+            val enableBtIntent = Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+            startActivityForResult(enableBtIntent, REQUEST_CODE_ENABLE_BT);
         }
     }
 
